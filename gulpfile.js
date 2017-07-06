@@ -6,14 +6,16 @@ var concat  = require('gulp-concat');
 var order = require('gulp-order');
 var uglify  = require('gulp-uglify');
 var clean = require('gulp-clean');
+var jsdoc = require('gulp-jsdoc3');
 
+var config = require('./jsodc.json');
 
 
 
 
 gulp.task('clean',function(){
 
-    gulp.src(['dist/*'],{read:false})
+    gulp.src(['dist/*', 'out/*'],{read:false})
         .pipe(clean());
 });
 
@@ -41,4 +43,20 @@ gulp.task("uglify",function(){
         .pipe(concat('libJS.min.js')).pipe(uglify()).pipe(gulp.dest('./dist'));
 });
 
-gulp.task('minify', ['clean', 'contact', 'uglify']);
+
+gulp.task('generate', function(){
+
+    return gulp.src(['./src/libJS.js',"./src/lib_*/*.js"])
+        .pipe(jsdoc(config))
+});
+
+gulp.task('minify', ['clean', 'contact', 'uglify', 'generate']);
+
+
+
+gulp.task('watch', function(){
+    gulp.watch('./src/lib_*/*.js', ['minify']);
+});
+
+
+
