@@ -18,13 +18,10 @@
         root.libJS = factory();
     }
 }(this, function () {
-
-
+//split
     return {
         number: _lib_Number()
     };
 
 
 }));
-
-

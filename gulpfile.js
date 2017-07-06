@@ -5,27 +5,40 @@ var gulp = require('gulp');
 var concat  = require('gulp-concat');
 var order = require('gulp-order');
 var uglify  = require('gulp-uglify');
+var clean = require('gulp-clean');
+
+
+
+
+
+gulp.task('clean',function(){
+
+    gulp.src(['dist/*'],{read:false})
+        .pipe(clean());
+});
+
+var fileArray = [
+    "src/libJS/libJS.header",
+    "src/lib_*/*.js",
+    "src/libJS/libJS.tail",
+
+
+];
 
 //合并
 gulp.task("contact",function(){
     // 把1.js和2.js合并为main.js，输出到dest/js目录下
-    gulp.src(['src/libJS.js', 'src/lib_*/*.js'])
-        .pipe(order([
-            "src/libJS.js",
-            "src/lib_*/*.js"
-        ]))
+    gulp.src(fileArray)
+        .pipe(order(fileArray,{ base: './' }))
         .pipe(concat('libJS.js')).pipe(gulp.dest('./dist'));
 });
 
 //压缩
 gulp.task("uglify",function(){
     // 把1.js和2.js合并压缩为main.js，输出到dest/js目录下
-    gulp.src(['src/libJS.js', 'src/lib_*/*.js'])
-        .pipe(order([
-            "src/libJS.js",
-            "src/lib_*/*.js"
-        ]))
-        .pipe(concat('libJS-min.js')).pipe(uglify()).pipe(gulp.dest('./dist'));
+    gulp.src(fileArray)
+        .pipe(order(fileArray,{ base: './' }))
+        .pipe(concat('libJS.min.js')).pipe(uglify()).pipe(gulp.dest('./dist'));
 });
 
-gulp.task('minify', ['contact', 'uglify']);
+gulp.task('minify', ['clean', 'contact', 'uglify']);
