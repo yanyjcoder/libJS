@@ -7,13 +7,14 @@
   "author": "yanyj",
   "license": "MIT",
   "scripts": {
-    "start": "node splitFile && gulp minify",
+    "start": "node splitFile && gulp minify ",
     "webpack": "webpack -p"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-order": "^1.1.1",
     "gulp-uglify": "^3.0.0"
   },
