@@ -1,14 +1,15 @@
 /**
- * Created by yanyj on 2017/7/6.
+ * 公共类
+ * @constructor _lib_commonJS
  */
 
-function _commonJS() {
+function _lib_commonJS() {
 
     var _common = {
         /**
-         *
-         * @param {object} typeOfValue
-         * @param {string} type
+         *检查输入的值与类型是否匹配
+         * @param {object} typeOfValue 被检测的值
+         * @param {string} type 检测类型
          */
         typeOfValue: function (typeOfValue, type) {
             return typeof typeOfValue === type;
