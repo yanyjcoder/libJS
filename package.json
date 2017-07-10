@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node splitFile && gulp minify ",
+    "performance": "node test/test",
     "webpack": "webpack -p"
   },
   "devDependencies": {

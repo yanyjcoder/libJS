@@ -37,7 +37,17 @@
          * libJS中的String工具类
          * @property string _lib_stringJS 通过libJS.string可访问
          */
-        string: _lib_stringJS()
+        string: _lib_stringJS(),
+        /**
+         * libJS中的Object工具类
+         * @property object _lib_objectJS 通过libJS.object可访问
+         */
+        object: _lib_objectJS(),
+        /**
+         * libJS中的Array工具类
+         * @property array _lib_arrayJS 通过libJS.array可访问
+         */
+        array: _lib_arrayJS(),
     };
 
 
