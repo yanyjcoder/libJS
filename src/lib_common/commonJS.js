@@ -8,6 +8,7 @@ function _lib_commonJS() {
     var _common = {
         /**
          *  检查输入的值与类型是否匹配 只能检测基本类型
+         * @memberOf _lib_commonJS
          * @param {object} typeOfValue 被检测的值
          * @param {string} type 检测类型
          */
@@ -17,6 +18,7 @@ function _lib_commonJS() {
 
         /**
          * 检测复杂类型
+         * @memberOf _lib_commonJS
          * @param value 被检测的值
          * @param {string} name 检测类型
          * @return {boolean}

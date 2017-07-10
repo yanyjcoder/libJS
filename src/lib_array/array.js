@@ -4,14 +4,18 @@
  */
 var _lib_arrayJS = function () {
 
-    /**
-     * 判断数组中是否包含指定值， ie兼容
-     * @param {object} value 查询值
-     * @param {array} array 检测数组
-     * @return number
-     */
-    function contains(value, array) {
+    return {
+        /**
+         * 判断数组中是否包含指定值， ie兼容
+         * @memberOf _lib_arrayJS
+         * @param {object} value 查询值
+         * @param {array} array 检测数组
+         * @return number
+         */
+        contains: function (value, array) {
 
-        return -1;
+            return -1;
+        }
+
     }
 };

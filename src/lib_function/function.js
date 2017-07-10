@@ -7,6 +7,7 @@ var _lib_functionJS = function () {
     return {
         /**
          * 判断是否是函数对象
+         * @memberOf _lib_functionJS
          * @param value
          * @return {boolean}
          */

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node splitFile && gulp minify ",
     "performance": "node test/test",
-    "webpack": "webpack -p"
+    "watch": "gulp watch"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",

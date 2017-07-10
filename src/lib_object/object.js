@@ -122,6 +122,7 @@ var _lib_objectJS = function () {
     return {
         /**
          * 判断对象是否拥有属性
+         * @memberOf _lib_objectJS
          * @param propertyName 属性名
          * @param object 待判断对象
          * @returns {boolean}
@@ -133,6 +134,7 @@ var _lib_objectJS = function () {
 
         /**
          *  两个对象是否相等
+         * @memberOf _lib_objectJS
          * @param object1 对象1
          * @param object2 对象2
          * @return {*}
@@ -143,6 +145,7 @@ var _lib_objectJS = function () {
 
         /**
          * 判断是否是对象
+         * @memberOf _lib_objectJS
          * @param value
          * @return {*|boolean}
          */
@@ -151,6 +154,7 @@ var _lib_objectJS = function () {
 
         /**
          * 返回对象所有的属性
+         * @memberOf _lib_objectJS
          * @param {object} obj
          * @return {*}
          */
@@ -158,6 +162,7 @@ var _lib_objectJS = function () {
 
         /**
          *  检测对象是否有用某属性
+         * @memberOf _lib_objectJS
          * @param obj
          * @param {string} key
          * @return {boolean|*}
