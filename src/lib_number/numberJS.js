@@ -29,7 +29,7 @@ var _lib_numberJS = function () {
          * @returns {number}
          */
         covertObjectToNumber: function (value) {
-            if (isNumber(value)) return value;
+            if (this.isNumber(value)) return value;
             var valueStr = value.toString();
             return +valueStr;
         },
@@ -53,6 +53,16 @@ var _lib_numberJS = function () {
          */
         covertValueToRelativeNumber: function (value) {
             return -value;
+        },
+
+        /**
+         * 取整
+         * @memberOf _lib_numberJS
+         * @param {number} value 有意义的数字或数字字符串
+         * @return {number}
+         */
+        getIntNumber: function (value) {
+            return ~~(+value);
         }
     }
 

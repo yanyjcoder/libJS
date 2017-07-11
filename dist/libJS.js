@@ -26,17 +26,60 @@
  */
 var _lib_arrayJS = function () {
 
-    /**
-     * 判断数组中是否包含指定值， ie兼容
-     * @param {object} value 查询值
-     * @param {array} array 检测数组
-     * @return number
-     */
-    function contains(value, array) {
 
-        return -1;
+
+    return {
+        /**
+         * 判断数组中是否包含指定值， ie兼容
+         * @memberOf _lib_arrayJS
+         * @param {object} value 查询值
+         * @param {array} array 检测数组
+         * @return number
+         */
+        contains: function (value, array) {
+
+            return -1;
+        },
+        /**
+         * @memberOf _lib_arrayJS
+         * @param {Array} array
+         * @param {Number} length
+         */
+        setSize: function (array, length) {
+          array.length = length;
+        },
+
+        /**
+         * 更安全清空数组, 使用时注意是否还有其它变量引用该数组
+         * @memberOf _lib_arrayJS
+         * @param {Array} array
+         */
+        empty: function (array) {
+            this.setSize(array, 0);
+        },
+
+        /**
+         * 打乱数组
+         * @memberOf _lib_arrayJS
+         * @param arr
+         * @return {*}
+         */
+        shuffle: function(arr) {
+            var i,
+                j,
+                temp;
+            for (i = arr.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            return arr;
+        }
+
     }
 };
+
 /**
  * 公共类
  * @constructor _lib_commonJS
@@ -47,6 +90,7 @@ function _lib_commonJS() {
     var _common = {
         /**
          *  检查输入的值与类型是否匹配 只能检测基本类型
+         * @memberOf _lib_commonJS
          * @param {object} typeOfValue 被检测的值
          * @param {string} type 检测类型
          */
@@ -56,6 +100,7 @@ function _lib_commonJS() {
 
         /**
          * 检测复杂类型
+         * @memberOf _lib_commonJS
          * @param value 被检测的值
          * @param {string} name 检测类型
          * @return {boolean}
@@ -82,6 +127,7 @@ var _lib_functionJS = function () {
     return {
         /**
          * 判断是否是函数对象
+         * @memberOf _lib_functionJS
          * @param value
          * @return {boolean}
          */
@@ -101,49 +147,62 @@ var _lib_numberJS = function () {
 
     var commonJS = _lib_commonJS();
 
-    /**
-     *
-     *  判断参数是否为数字
-     * @param {object} object 检测对象
-     * @return {boolean} true/false
-     */
-
-    function isNumber(object) {
-        return commonJS.typeOfValue(object, "number");
-    }
-
-
-
-
-    /**
-     *
-     * 将参数转化为数字 当输入的值首字母非数字时会抛出异常
-     * @param {object} value 要转换的值
-     * @returns {Number}
-     */
-    function covertObjectToNumber(value) {
-        var valueStr = value.toString();
-        if(!_isNumberByIndex(valueStr, 0))  {
-            throw new Error("参数非法，首字母必须为数字!")
-        }
-        return valueStr.indexOf(".") === -1 ? parseInt(valueStr) : parseFloat(valueStr);
-    }
-
-    /**
-     * 判断指定位置是否为数字
-     * @param {string} str 字符串
-     * @param {number} index 位置（从0开始）
-     * @returns {boolean}
-     */
-    function _isNumberByIndex(str, index) {
-
-        return !!parseInt(str.charAt(index));
-    }
-
     return {
-        isNumber: isNumber,
-        covertObjectToNumber: covertObjectToNumber
-    };
+        /**
+         *  判断参数是否为数字
+         *  @memberOf _lib_numberJS
+         * @param {object} object 检测对象
+         * @return {boolean} true/false
+         */
+
+        isNumber: function (object) {
+            return commonJS.typeOfValue(object, "number");
+        },
+
+
+        /**
+         * 将参数转化为数字 当输入的值首字母非数字时会抛出异常
+         * @memberOf _lib_numberJS
+         * @param {object} value 要转换的值
+         * @returns {number}
+         */
+        covertObjectToNumber: function (value) {
+            if (this.isNumber(value)) return value;
+            var valueStr = value.toString();
+            return +valueStr;
+        },
+
+        /**
+         * 判断指定位置是否为数字
+         * @memberOf _lib_numberJS
+         * @param {string} str 字符串
+         * @param {number} index 位置（从0开始）
+         * @returns {boolean}
+         */
+        isNumberByIndex: function (str, index) {
+
+            return !!parseInt(str.charAt(index));
+        },
+
+        /**
+         * 取相对数
+         * @memberOf _lib_numberJS
+         * @param {number} value
+         */
+        covertValueToRelativeNumber: function (value) {
+            return -value;
+        },
+
+        /**
+         * 取整
+         * @memberOf _lib_numberJS
+         * @param {number} value 有意义的数字或数字字符串
+         * @return {number}
+         */
+        getIntNumber: function (value) {
+            return ~~(+value);
+        }
+    }
 
 };
 
@@ -244,7 +303,6 @@ var _lib_objectJS = function () {
                 // Deep compare objects.
                 var keys = _keys(a), key;
                 size = keys.length;
-                console.log(size)
                 // Ensure that both objects contain the same number of properties before comparing deep equality.
                 result = _keys(b).length === size;
                 if (result) {
@@ -280,6 +338,7 @@ var _lib_objectJS = function () {
     return {
         /**
          * 判断对象是否拥有属性
+         * @memberOf _lib_objectJS
          * @param propertyName 属性名
          * @param object 待判断对象
          * @returns {boolean}
@@ -291,6 +350,7 @@ var _lib_objectJS = function () {
 
         /**
          *  两个对象是否相等
+         * @memberOf _lib_objectJS
          * @param object1 对象1
          * @param object2 对象2
          * @return {*}
@@ -301,6 +361,7 @@ var _lib_objectJS = function () {
 
         /**
          * 判断是否是对象
+         * @memberOf _lib_objectJS
          * @param value
          * @return {*|boolean}
          */
@@ -309,6 +370,7 @@ var _lib_objectJS = function () {
 
         /**
          * 返回对象所有的属性
+         * @memberOf _lib_objectJS
          * @param {object} obj
          * @return {*}
          */
@@ -316,6 +378,7 @@ var _lib_objectJS = function () {
 
         /**
          *  检测对象是否有用某属性
+         * @memberOf _lib_objectJS
          * @param obj
          * @param {string} key
          * @return {boolean|*}
@@ -335,18 +398,33 @@ function _lib_stringJS() {
 
     var comonJS = _lib_commonJS();
 
-    /**
-     *
-    * 判断是否是字符串
-    * @param {{}} object
-    * @returns {*}
-    */
-    function isString(object) {
-        return comonJS.typeOfValue(object, 'string');
-    }
     return {
-          isString: isString
-    };
+        /**
+         *
+         * 判断是否是字符串
+         * @memberOf _lib_stringJS
+         * @param {{}} object
+         * @returns {*}
+         */
+        isString: function (object) {
+            return comonJS.typeOfValue(object, 'string');
+        },
+
+        /**
+         * 硬拼接字符串
+         * @memberOf _lib_stringJS
+         * @return {string}
+         */
+        stiffConcat: function () {
+            var args = [];
+
+            for(var i = 0; i < arguments; i ++) {
+                args.push(arguments[i]);
+            }
+
+            return ''.concat(args)
+        }
+    }
 }
 
 

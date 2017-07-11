@@ -17,6 +17,21 @@ function _lib_stringJS() {
          */
         isString: function (object) {
             return comonJS.typeOfValue(object, 'string');
+        },
+
+        /**
+         * 硬拼接字符串
+         * @memberOf _lib_stringJS
+         * @return {string}
+         */
+        stiffConcat: function () {
+            var args = [];
+
+            for(var i = 0; i < arguments; i ++) {
+                args.push(arguments[i]);
+            }
+
+            return ''.concat(args)
         }
     }
 }
