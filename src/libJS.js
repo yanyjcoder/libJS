@@ -48,6 +48,11 @@
          * @property array _lib_arrayJS 通过libJS.array可访问
          */
         array: _lib_arrayJS(),
+        /**
+         * libJS中的Date工具类
+         * @property date _lib_dateJS 通过libJS.date可访问
+         */
+        date: _lib_dateJS(),
     };
 
 

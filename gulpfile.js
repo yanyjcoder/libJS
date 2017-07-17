@@ -58,5 +58,13 @@ gulp.task('watch', function(){
     gulp.watch('./src/lib_*/*.js', ['minify']);
 });
 
+//压缩
+gulp.task("minify-test",function(){
+    // 把1.js和2.js合并压缩为main.js，输出到dest/js目录下
+    gulp.src('./minfy/socket.io.js')
+
+        .pipe(uglify()).pipe(gulp.dest('./dist'));
+});
+
 
 
