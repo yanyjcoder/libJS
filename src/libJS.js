@@ -53,6 +53,11 @@
          * @property date _lib_dateJS 通过libJS.date可访问
          */
         date: _lib_dateJS(),
+        /**
+         * libJS中的Web工具类
+         * @property web _lib_webJS 通过libJS.web可访问
+         */
+        web: _lib_webJS(),
     };
 
 

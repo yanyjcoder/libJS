@@ -598,6 +598,45 @@ function _lib_stringJS() {
 
 
 
+/**
+ * web工具类，可通过libJS.web 访问,依赖于jquery
+ * @constructor _lib_webJS
+ */
+function _lib_webJS() {
+    return {
+        /**
+         * jquery ajax 封装类
+         * @memberOf _lib_webJS
+         * @constructor ajax
+         * @inner
+         */
+        ajax: {
+            /**
+             * 封装的post 方法
+             * @memberOf ajax
+             * @param {String} url
+             * @param {Object} data
+             * @param {Function} fn
+             */
+            post: function(url, data, fn) {
+
+                var settings = {
+                    "async": true,
+                    "url": url ,
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "data": JSON.stringify(data)
+                };
+
+                $.ajax(settings).done(function (response) {
+                    fn(response);
+                });
+            }
+        }
+    }
+}
     return {
         /**
          * libJS中的common公共类
@@ -631,6 +670,11 @@ function _lib_stringJS() {
          * @property date _lib_dateJS 通过libJS.date可访问
          */
         date: _lib_dateJS(),
+        /**
+         * libJS中的Web工具类
+         * @property web _lib_webJS 通过libJS.web可访问
+         */
+        web: _lib_webJS(),
     };
 
 
