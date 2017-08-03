@@ -58,6 +58,17 @@
          * @property web _lib_webJS 通过libJS.web可访问
          */
         web: _lib_webJS(),
+        /**
+         * libJS中的Json工具类
+         * @property json _lib_jsonJS 通过libJS.json可访问
+         */
+        json: _lib_jsonJS(),
+        /**
+         * libJS中的Coordinate工具类
+         * @property json _lib_coordinateJS 通过libJS.coordinate可访问
+         */
+        coordinate: _lib_coordinateJS(),
+
     };
 
 

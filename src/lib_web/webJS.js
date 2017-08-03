@@ -34,6 +34,18 @@ function _lib_webJS() {
                     fn(response);
                 });
             }
+        },
+        /**
+         *
+         *根据参数名获取url中的参数值
+         * @memberOf _lib_webJS
+         * @param {String} paramName
+         * @returns {null}
+         */
+        getQueryString: function(paramName) {
+            var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+            var r = decodeURI(window.location).search.substr(1).match(reg);
+            if(r!=null)return  r[2]; return null;
         }
     }
 }
