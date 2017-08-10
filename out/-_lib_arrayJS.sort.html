@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: _lib_dateJS</title>
+	<title>Documentation Class: sort</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,13 +72,15 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: _lib_dateJS</h1>
+	<h1 class="page-title">Class: sort</h1>
 <section>
 
 <header>
     
         <h2>
-        _lib_dateJS
+            <span class="ancestors"><a href="-_lib_arrayJS.html">_lib_arrayJS</a>.</span>
+        
+        sort
         </h2>
         
     
@@ -91,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="_lib_dateJS"><span class="type-signature"></span>new _lib_dateJS()</h4>
+    <h4 class="name" id="sort"><span class="type-signature"></span>new sort()</h4>
     
     
 </dt>
@@ -99,7 +101,7 @@
 
     
     <div class="description">
-        Date工具类
+        排序算法集合
     </div>
     
 
@@ -187,7 +189,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".check"><span class="type-signature">&lt;static> </span>check(date)</h4>
+    <h4 class="name" id=".bubble"><span class="type-signature">&lt;static> </span>bubble(array)</h4>
     
     
 </dt>
@@ -195,7 +197,7 @@
 
     
     <div class="description">
-        校验 yyyy-MM-dd hh:mm:ss 日期字符串
+        冒泡排序
     </div>
     
 
@@ -230,13 +232,13 @@
 
         <tr>
             
-                <td class="name"><code>date</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">array</span>
 
 
 
@@ -247,7 +249,7 @@
 
             
 
-            <td class="description last">待校验的字符串</td>
+            <td class="description last">待排序数组</td>
         </tr>
 
     
@@ -307,26 +309,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -335,7 +317,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".format"><span class="type-signature">&lt;static> </span>format(date, format)</h4>
+    <h4 class="name" id=".insert"><span class="type-signature">&lt;static> </span>insert(array)</h4>
     
     
 </dt>
@@ -343,7 +325,7 @@
 
     
     <div class="description">
-        格式化日期
+        插入排序
     </div>
     
 
@@ -378,13 +360,13 @@
 
         <tr>
             
-                <td class="name"><code>date</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">array</span>
 
 
 
@@ -395,31 +377,7 @@
 
             
 
-            <td class="description last">日期或者可以转成日期的字符串和毫秒数。</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>format</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">要转换的格式字符串 {yyyy:年, MM: 月,dd:日, hh:时, mm:分, ss:秒}</td>
+            <td class="description last">待排序数组</td>
         </tr>
 
     
@@ -479,26 +437,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -507,7 +445,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".getDiffTime"><span class="type-signature">&lt;static> </span>getDiffTime(date1, date2)</h4>
+    <h4 class="name" id=".select"><span class="type-signature">&lt;static> </span>select(array)</h4>
     
     
 </dt>
@@ -515,7 +453,7 @@
 
     
     <div class="description">
-        获取两个日期相差的时间（精确到时分秒）
+        选择排序
     </div>
     
 
@@ -550,13 +488,13 @@
 
         <tr>
             
-                <td class="name"><code>date1</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">array</span>
 
 
 
@@ -567,31 +505,7 @@
 
             
 
-            <td class="description last">日期或者可以转换未日期的字符串或毫秒数</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>date2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期或者可以转换未日期的字符串或毫秒数</td>
+            <td class="description last">待排序数组</td>
         </tr>
 
     
@@ -651,370 +565,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".getFineDiffByDiffFlag"><span class="type-signature">&lt;static> </span>getFineDiffByDiffFlag(date1, date2, diffFlag)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        计算两个日期相差的时间 不足当前日期相差格式的统一返回0
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期或者可以转换未日期的字符串或毫秒数</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>date2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期或者可以转换未日期的字符串或毫秒数</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>diffFlag</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">2：day ，3：hour，4：minute，5：second</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".isIllegalDate"><span class="type-signature">&lt;static> </span>isIllegalDate(date)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        判断是否是非法的日期
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
