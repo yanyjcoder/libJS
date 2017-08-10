@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: _lib_functionJS</title>
+	<title>Documentation Class: _lib_webJS</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,13 +72,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: _lib_functionJS</h1>
+	<h1 class="page-title">Class: _lib_webJS</h1>
 <section>
 
 <header>
     
         <h2>
-        _lib_functionJS
+        _lib_webJS
         </h2>
         
     
@@ -91,7 +91,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="_lib_functionJS"><span class="type-signature"></span>new _lib_functionJS()</h4>
+    <h4 class="name" id="_lib_webJS"><span class="type-signature"></span>new _lib_webJS()</h4>
     
     
 </dt>
@@ -99,7 +99,7 @@
 
     
     <div class="description">
-        Function 工具类
+        web工具类，可通过libJS.web 访问,依赖于jquery
     </div>
     
 
@@ -173,6 +173,13 @@
     
 
     
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="-_lib_webJS-ajax.html">ajax</a></dt>
+            <dd></dd>
+        </dl>
+    
 
     
 
@@ -187,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".isFunction"><span class="type-signature">&lt;static> </span>isFunction(value)</h4>
+    <h4 class="name" id=".getQueryString"><span class="type-signature">&lt;static> </span>getQueryString(paramName)</h4>
     
     
 </dt>
@@ -195,7 +202,7 @@
 
     
     <div class="description">
-        判断是否是函数对象
+        根据参数名获取url中的参数值
     </div>
     
 
@@ -230,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>paramName</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
             
             </td>
 
@@ -312,7 +325,7 @@
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">null</span>
 
 
 
