@@ -133,9 +133,16 @@ var _lib_arrayJS = function () {
             }
             return arr;
         },
-
+        /**
+         * 获取数组中随机一项
+         * @memberOf _lib_arrayJS
+         * @param arr
+         * @return {*}
+         */
+        getRandomItem: function(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        },
         copy: function (array) {
-
             return array.slice();
         }
     }

@@ -155,9 +155,16 @@ var _lib_arrayJS = function () {
             }
             return arr;
         },
-
+        /**
+         * 获取数组中随机一项
+         * @memberOf _lib_arrayJS
+         * @param arr
+         * @return {*}
+         */
+        getRandomItem: function(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        },
         copy: function (array) {
-
             return array.slice();
         }
     }
@@ -531,6 +538,33 @@ var _lib_functionJS = function () {
          */
         isFunction: function (value) {
             return common.isHasClassName(value, 'Function');
+        },
+        /**
+         * arguments 转换为数组
+         * @memberOf _lib_functionJS
+         * @param {object}value
+         * @return []
+         */
+        args2array: function (args) {
+            return Array.prototype.slice.call(args);;
+        },
+        /**
+         * 回调函数
+         * @memberOf _lib_functionJS
+         * @return {function}
+         */
+        flow: function () {
+            var funcs = this.args2array(arguments);
+            return function (args) {
+                var i = 0;
+                var result = funcs[i++].call(this, args);
+                while (i < funcs.length) {
+                    result = funcs[i++].call(this, result);
+                }
+
+                return result;
+            }
+
         }
     };
 };
@@ -1076,7 +1110,11 @@ function _lib_webJS() {
          * @property json _lib_coordinateJS 通过libJS.coordinate可访问
          */
         coordinate: _lib_coordinateJS(),
-
+        /**
+         * libJS中的Function工具类
+         * @property json _lib_functionJS 通过libJS.Function可访问
+         */
+        Function: _lib_functionJS(),
     };
 
 

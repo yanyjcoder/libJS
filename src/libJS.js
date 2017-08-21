@@ -68,7 +68,11 @@
          * @property json _lib_coordinateJS 通过libJS.coordinate可访问
          */
         coordinate: _lib_coordinateJS(),
-
+        /**
+         * libJS中的Function工具类
+         * @property json _lib_functionJS 通过libJS.Function可访问
+         */
+        Function: _lib_functionJS(),
     };
 
 
