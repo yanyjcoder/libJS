@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib_array/arrayJS.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib_array/arrayJS.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * array工具类
+ * @constructor _lib_arrayJS
+ */
+var _lib_arrayJS = function () {
+
+
+
+    return {
+        /**
+         * 排序算法集合
+         * @memberOf _lib_arrayJS
+         * @class sort
+         */
+        sort: {
+            /**
+             * 冒泡排序
+             * @memberOf   _lib_arrayJS.sort
+             * @param {array} array 待排序数组
+             */
+            bubble: function (array) {
+                var len = array.length;
+                for (var i = 0; i &lt; len; i++) {
+                    for (var j = 0; j &lt; len - 1 - i; j++) {
+                        if (array[j] > array[j + 1]) {        //相邻元素两两对比
+                            var temp = array[j + 1];        //元素交换
+                            array[j + 1] = array[j];
+                            array[j] = temp;
+                        }
+                    }
+                }
+            },
+            /**
+             * 选择排序
+             * @memberOf   _lib_arrayJS.sort
+             * @param {array} array 待排序数组
+             */
+            select: function (array) {
+                var len = array.length;
+                var minIndex, temp;
+                for (var i = 0; i &lt; len - 1; i++) {
+                    minIndex = i;
+                    for (var j = i + 1; j &lt; len; j++) {
+                        if (array[j] &lt; array[minIndex]) {     //寻找最小的数
+                            minIndex = j;                 //将最小数的索引保存
+                        }
+                    }
+                    temp = array[i];
+                    array[i] = array[minIndex];
+                    array[minIndex] = temp;
+                }
+            },
+            /**
+             * 插入排序
+             * @memberOf   _lib_arrayJS.sort
+             * @param {array} array 待排序数组
+             */
+            insert: function (array) {
+                var len = array.length;
+                var preIndex, current;
+                for (var i = 1; i &lt; len; i++) {
+                    preIndex = i - 1;
+                    current = array[i];
+                    while(preIndex >= 0 &amp;&amp; array[preIndex] > current) {
+                        array[preIndex+1] = array[preIndex];
+                        preIndex--;
+                    }
+                    array[preIndex+1] = current;
+                }
+            },
+            shell: function (array) {
+                var len = array.length,
+                    temp,
+                    gap = 1;
+                while(gap &lt; len/3) {          //动态定义间隔序列
+                    gap =gap*3+1;
+                }
+                for (gap; gap> 0; gap = Math.floor(gap/3)) {
+                    for (var i = gap; i &lt; len; i++) {
+                        temp = array[i];
+                        for (var j = i-gap; j > 0 &amp;&amp; array[j]> temp; j-=gap) {
+                            array[j+gap] = array[j];
+                        }
+                        array[j+gap] = temp;
+                    }
+                }
+            }
+        },
+        /**
+         * 判断数组中是否包含指定值， ie兼容
+         * @memberOf _lib_arrayJS
+         * @param {object} value 查询值
+         * @param {array} array 检测数组
+         * @return number
+         */
+        contains: function (value, array) {
+
+            return -1;
+        },
+        /**
+         * @memberOf _lib_arrayJS
+         * @param {Array} array
+         * @param {Number} length
+         */
+        setSize: function (array, length) {
+          array.length = length;
+        },
+
+        /**
+         * 更安全清空数组, 使用时注意是否还有其它变量引用该数组
+         * @memberOf _lib_arrayJS
+         * @param {Array} array
+         */
+        empty: function (array) {
+            this.setSize(array, 0);
+        },
+
+        /**
+         * 打乱数组
+         * @memberOf _lib_arrayJS
+         * @param arr
+         * @return {*}
+         */
+        shuffle: function(arr) {
+            var i,
+                j,
+                temp;
+            for (i = arr.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            return arr;
+        },
+        /**
+         * 获取数组中随机一项
+         * @memberOf _lib_arrayJS
+         * @param arr
+         * @return {*}
+         */
+        getRandomItem: function(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        },
+        copy: function (array) {
+            return array.slice();
+        }
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-libJS.html">libJS</a></li></ul><h3>Classes</h3><ul><li><a href="-_lib_arrayJS.html">_lib_arrayJS</a></li><li><a href="-_lib_arrayJS.sort.html">sort</a></li><li><a href="-_lib_commonJS.html">_lib_commonJS</a></li><li><a href="-_lib_coordinateJS.html">_lib_coordinateJS</a></li><li><a href="-_lib_dateJS.html">_lib_dateJS</a></li><li><a href="-_lib_functionJS.html">_lib_functionJS</a></li><li><a href="-_lib_ie8JS.html">_lib_ie8JS</a></li><li><a href="-_lib_jsonJS.html">_lib_jsonJS</a></li><li><a href="-_lib_knackJS.html">_lib_knackJS</a></li><li><a href="-_lib_numberJS.html">_lib_numberJS</a></li><li><a href="-_lib_objectJS.html">_lib_objectJS</a></li><li><a href="-_lib_stringJS.html">_lib_stringJS</a></li><li><a href="-_lib_validateJS.html">_lib_validateJS</a></li><li><a href="-_lib_webJS.html">_lib_webJS</a></li><li><a href="-_lib_webJS-ajax.html">ajax</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ie8_extend_function">ie8_extend_function</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Fri Sep 15 2017 13:37:12 GMT+0800 (中国标准时间)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
