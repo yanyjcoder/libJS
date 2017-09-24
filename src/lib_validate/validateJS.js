@@ -5,8 +5,13 @@
 var _lib_validateJS = function () {
     
     return {
-        isName: function () {
-            
+        /**
+         * 检测是否是中文名
+         * @param name 待检测中文名
+         * @returns {boolean}
+         */
+        isChineseName: function (name) {
+            return /^[\u4E00-\u9FA5]{2,4}$/.test(name);
         }
     };
 };

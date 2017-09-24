@@ -141,7 +141,25 @@ function _lib_coordinateJS() {
         gcj02tobd09: gcj02tobd09,
         wgs84togcj02: wgs84togcj02,
         gcj02towgs84: gcj02towgs84,
-        outOfChina: out_of_china
+        outOfChina: out_of_china,
+        /**
+         * 判断是否为合法的经度
+         * @param {Number} longitude
+         * @memberOf _lib_coordinateJS
+         * @returns boolean
+         */
+        checkLongitude: function (longitude) {
+            return /^(((\d|[1-9]\d|1[1-7]\d|0)\.\d{0,7})|(\d|[1-9]\d|1[1-7]\d|0{1,3})|180\.0{0,7}|180)$/.test(longitude);
+        },
+        /**
+         * 判断是否为合法的纬度
+         * @param {Number} latitude
+         * @memberOf _lib_coordinateJS
+         * @returns boolean
+         */
+        checkLatitude: function (latitude) {
+            return  /^([0-8]?\d{1}\.\d{0,7}|90\.0{0,7}|[0-8]?\d{1}|90)$/.test(latitude);
+        }
     }
 
 }

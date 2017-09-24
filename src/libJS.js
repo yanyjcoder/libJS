@@ -80,9 +80,14 @@
         ie8: _lib_ie8JS(),
         /**
          * libJS中的knack小技巧类
-         * @property json _lib_kbackJS 通过libJS.knack可访问
+         * @property json _lib_knackJS 通过libJS.knack可访问
          */
-        knack: _lib_knackJS()
+        knack: _lib_knackJS(),
+        /**
+         * libJS中的validate类
+         * @property json _lib_validateJS 通过libJS.validate可访问
+         */
+        validate: _lib_validateJS()
     };
 
 

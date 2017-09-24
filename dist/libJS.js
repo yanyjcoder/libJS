@@ -351,7 +351,25 @@ function _lib_coordinateJS() {
         gcj02tobd09: gcj02tobd09,
         wgs84togcj02: wgs84togcj02,
         gcj02towgs84: gcj02towgs84,
-        outOfChina: out_of_china
+        outOfChina: out_of_china,
+        /**
+         * 判断是否为合法的经度
+         * @param {Number} longitude
+         * @memberOf _lib_coordinateJS
+         * @returns boolean
+         */
+        checkLongitude: function (longitude) {
+            return /^(((\d|[1-9]\d|1[1-7]\d|0)\.\d{0,7})|(\d|[1-9]\d|1[1-7]\d|0{1,3})|180\.0{0,7}|180)$/.test(longitude);
+        },
+        /**
+         * 判断是否为合法的纬度
+         * @param {Number} latitude
+         * @memberOf _lib_coordinateJS
+         * @returns boolean
+         */
+        checkLatitude: function (latitude) {
+            return  /^([0-8]?\d{1}\.\d{0,7}|90\.0{0,7}|[0-8]?\d{1}|90)$/.test(latitude);
+        }
     }
 
 }
@@ -1115,7 +1133,38 @@ function _lib_stringJS() {
             }
 
             return ''.concat(args)
+        },
+
+        /**
+         * 将对象安全的转化为String
+         * @memberOf _lib_stringJS
+         * @param object 要转换的对象
+         * @returns {*}
+         */
+        objoct2string: function(object) {
+        var r = [];
+        if (typeof o == "string") {
+            return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
         }
+        if (typeof o == "object") {
+            if (!o.sort) {
+                for (var i in o) {
+                    r.push(i + ":" + obj2string(o[i]));
+                }
+                if ( !! document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+                    r.push("toString:" + o.toString.toString());
+                }
+                r = "{" + r.join() + "}";
+            } else {
+                for (var i = 0; i < o.length; i++) {
+                    r.push(obj2string(o[i]))
+                }
+                r = "[" + r.join() + "]";
+            }
+            return r;
+        }
+        return o.toString();
+    }
     }
 }
 
@@ -1129,8 +1178,13 @@ function _lib_stringJS() {
 var _lib_validateJS = function () {
     
     return {
-        isName: function () {
-            
+        /**
+         * 检测是否是中文名
+         * @param name 待检测中文名
+         * @returns {boolean}
+         */
+        isChineseName: function (name) {
+            return /^[\u4E00-\u9FA5]{2,4}$/.test(name);
         }
     };
 };
@@ -1246,9 +1300,14 @@ function _lib_webJS() {
         ie8: _lib_ie8JS(),
         /**
          * libJS中的knack小技巧类
-         * @property json _lib_kbackJS 通过libJS.knack可访问
+         * @property json _lib_knackJS 通过libJS.knack可访问
          */
-        knack: _lib_knackJS()
+        knack: _lib_knackJS(),
+        /**
+         * libJS中的validate类
+         * @property json _lib_validateJS 通过libJS.validate可访问
+         */
+        validate: _lib_validateJS()
     };
 
 
