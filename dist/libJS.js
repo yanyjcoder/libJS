@@ -815,6 +815,15 @@ var _lib_numberJS = function () {
                     return 0;
                     break;
             }
+        },
+        /**
+         * 判断是否是质数
+         * @memberOf _lib_numberJS
+         * @param {number}x
+         * @return {boolean}
+         */
+        isPrime:function(x) {
+            return (!(/^,?$|^(,,+?)\1+$/.test(Array(++x))));
         }
     }
 
