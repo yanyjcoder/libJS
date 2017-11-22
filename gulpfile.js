@@ -43,7 +43,7 @@ gulp.task("uglify",function(){
         .pipe(concat('libJS.min.js')).pipe(uglify()).pipe(gulp.dest('./dist'));
 });
 
-
+//生成注释
 gulp.task('generate', function(){
 
     return gulp.src(['./src/libJS.js',"./src/lib_*/*.js"])

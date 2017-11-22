@@ -824,6 +824,16 @@ var _lib_numberJS = function () {
          */
         isPrime:function(x) {
             return (!(/^,?$|^(,,+?)\1+$/.test(Array(++x))));
+        },
+        /**
+         * 改进的向上取舍
+         * @memberOf _lib_numberJS
+         * @param {number}value
+         * @param {number} n 小数点位数
+         * @return {string}
+         */
+        toFiexd: function (value, n) {
+                return (value + 3e-16).toFixed(n);
         }
     }
 
