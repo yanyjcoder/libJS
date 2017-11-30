@@ -26,6 +26,15 @@ var _lib_knackJS = function () {
          */
          getHexadecimalColor: function (widthPoundKey) {
              return (widthPoundKey ? '#' : '') + Math.floor(Math.random() * (2 << 23)).toString(16);
+         },
+        /**
+         * 格式化消息
+         * @memberOf _lib_knackJS
+         * @param {string} msg  消息
+         * @returns {string}
+         */
+         log: function (msg) {
+                console.log('%c%s%s%s', 'color: yellow; background-color: black;', '– ', msg, ' –');
          }
     };
 };

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib_validate/validateJS.js</title>
+    <title>JSDoc: Source: lib_assert/assert.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib_validate/validateJS.js</h1>
+    <h1 class="page-title">Source: lib_assert/assert.js</h1>
 
     
 
@@ -27,23 +27,54 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * validate 工具类 提供验证一些特殊字符串的功能
- * @constructor _lib_validateJS
+ * assert断言库
+ * @constructor _lib_assertJS
  */
-var _lib_validateJS = function () {
-    
-    return {
-        /**
-         * 检测是否是中文名
-         * @param name 待检测中文名
-         * @returns {boolean}
-         */
-        isChineseName: function (name) {
-            return /^[\u4E00-\u9FA5]{2,4}$/.test(name);
-        }
+var _lib_assertJS = function () {
+
+    var commonJS = _lib_commonJS();
+
+    /**
+     * 自定义异常
+     * @param {string} msg
+     * @return {Error}
+     */
+    var assertError = function (msg) {
+        return new Error(msg);
     };
-};
-</code></pre>
+    var _assertFn = assertError;
+    return {
+
+        /**
+         * 设置断言false执行的方法
+         * @param {function} fn
+         * @memberOf _lib_assertJS
+         */
+        setAssertFn: function (fn) {
+            if(typeof fn === 'function' ) {
+                _assertFn = fn;
+            }
+        },
+        /**
+         * 自定义断言方法，根据传入的function来判断
+         * @param {function} fn
+         * @param {string} msg
+         * @memberOf _lib_assertJS
+         */
+        assert: function (fn, msg) {
+            if(fn.call()) {
+                return true;
+            }
+
+            if(commonJS.isHasClassName(_assertFn, 'Error')) {
+                throw _assertFn(msg);
+            }
+
+            _assertFn(msg);
+
+        }
+    }
+};</code></pre>
         </article>
     </section>
 

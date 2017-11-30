@@ -16,6 +16,8 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
+
         root.libJS = factory();
+        root.lib = root.libJS;
     }
 }(this, function () {

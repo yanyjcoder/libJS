@@ -44,7 +44,9 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
+
         root.libJS = factory();
+        root.lib = root.libJS;
     }
 }(this, function () {
 //split
@@ -53,67 +55,72 @@
          * libJS中的common公共类
          * @see {@link -lib_commonJS.html _lib_commonJS}.
          *
-         * @property common  _lib_commonJS 通过libJS.common可访问
+         * @property common  _lib_commonJS 通过libJS.common访问
          */
         common: _lib_commonJS(),
         /**
          * libJS中的Number工具类
-         * @property number _lib_numberJS 通过libJS.number可访问
+         * @property number _lib_numberJS 通过libJS.number访问
          */
         number: _lib_numberJS(),
         /**
          * libJS中的String工具类
-         * @property string _lib_stringJS 通过libJS.string可访问
+         * @property string _lib_stringJS 通过libJS.string访问
          */
         string: _lib_stringJS(),
         /**
          * libJS中的Object工具类
-         * @property object _lib_objectJS 通过libJS.object可访问
+         * @property object _lib_objectJS 通过libJS.object访问
          */
         object: _lib_objectJS(),
         /**
          * libJS中的Array工具类
-         * @property array _lib_arrayJS 通过libJS.array可访问
+         * @property array _lib_arrayJS 通过libJS.array访问
          */
         array: _lib_arrayJS(),
         /**
          * libJS中的Date工具类
-         * @property date _lib_dateJS 通过libJS.date可访问
+         * @property date _lib_dateJS 通过libJS.date访问
          */
         date: _lib_dateJS(),
         /**
          * libJS中的Web工具类
-         * @property web _lib_webJS 通过libJS.web可访问
+         * @property web _lib_webJS 通过libJS.web访问
          */
         web: _lib_webJS(),
         /**
          * libJS中的Json工具类
-         * @property json _lib_jsonJS 通过libJS.json可访问
+         * @property json _lib_jsonJS 通过libJS.json访问
          */
         json: _lib_jsonJS(),
         /**
          * libJS中的Coordinate工具类
-         * @property json _lib_coordinateJS 通过libJS.coordinate可访问
+         * @property json _lib_coordinateJS 通过libJS.coordinate访问
          */
         coordinate: _lib_coordinateJS(),
         /**
          * libJS中的Function工具类
-         * @property json _lib_functionJS 通过libJS.Function可访问
+         * @property json _lib_functionJS 通过libJS.Function访问
          */
         Function: _lib_functionJS(),
         /**
          * libJS中的ie8兼容类
-         * @property json _lib_ie8JS 通过libJS.ie8可访问
+         * @property json _lib_ie8JS 通过libJS.ie8访问
          */
         ie8: _lib_ie8JS(),
         /**
          * libJS中的knack小技巧类
-         * @property json _lib_knackJS 通过libJS.knack可访问
+         * @property knack _lib_knackJS 通过libJS.knack访问
          */
         knack: _lib_knackJS(),
         /**
+         * libJS中的assert断言库
+         * @property assert _lib_assertJS 通过libJS.assert访问
+         */
+        assert: _lib_assertJS(),
+        /**
          * libJS中的validate类
-         * @property json _lib_validateJS 通过libJS.validate可访问
+         * @property json _lib_validateJS 通过libJS.validate访问
          */
         validate: _lib_validateJS()
     };
@@ -129,13 +136,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-libJS.html">libJS</a></li></ul><h3>Classes</h3><ul><li><a href="-_lib_arrayJS.html">_lib_arrayJS</a></li><li><a href="-_lib_arrayJS.sort.html">sort</a></li><li><a href="-_lib_commonJS.html">_lib_commonJS</a></li><li><a href="-_lib_coordinateJS.html">_lib_coordinateJS</a></li><li><a href="-_lib_dateJS.html">_lib_dateJS</a></li><li><a href="-_lib_functionJS.html">_lib_functionJS</a></li><li><a href="-_lib_ie8JS.html">_lib_ie8JS</a></li><li><a href="-_lib_jsonJS.html">_lib_jsonJS</a></li><li><a href="-_lib_knackJS.html">_lib_knackJS</a></li><li><a href="-_lib_numberJS.html">_lib_numberJS</a></li><li><a href="-_lib_objectJS.html">_lib_objectJS</a></li><li><a href="-_lib_stringJS.html">_lib_stringJS</a></li><li><a href="-_lib_validateJS.html">_lib_validateJS</a></li><li><a href="-_lib_webJS.html">_lib_webJS</a></li><li><a href="-_lib_webJS-ajax.html">ajax</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ie8_extend_function">ie8_extend_function</a></li><li><a href="global.html#isChineseName">isChineseName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-libJS.html">libJS</a></li></ul><h3>Classes</h3><ul><li><a href="-_lib_arrayJS.html">_lib_arrayJS</a></li><li><a href="-_lib_arrayJS.sort.html">sort</a></li><li><a href="-_lib_assertJS.html">_lib_assertJS</a></li><li><a href="-_lib_commonJS.html">_lib_commonJS</a></li><li><a href="-_lib_coordinateJS.html">_lib_coordinateJS</a></li><li><a href="-_lib_dateJS.html">_lib_dateJS</a></li><li><a href="-_lib_functionJS.html">_lib_functionJS</a></li><li><a href="-_lib_ie8JS.html">_lib_ie8JS</a></li><li><a href="-_lib_jsonJS.html">_lib_jsonJS</a></li><li><a href="-_lib_knackJS.html">_lib_knackJS</a></li><li><a href="-_lib_numberJS.html">_lib_numberJS</a></li><li><a href="-_lib_objectJS.html">_lib_objectJS</a></li><li><a href="-_lib_stringJS.html">_lib_stringJS</a></li><li><a href="-_lib_validateJS.html">_lib_validateJS</a></li><li><a href="-_lib_webJS.html">_lib_webJS</a></li><li><a href="-_lib_webJS-ajax.html">ajax</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ie8_extend_function">ie8_extend_function</a></li><li><a href="global.html#isChineseName">isChineseName</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Nov 21 2017 09:01:16 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Nov 30 2017 10:36:05 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

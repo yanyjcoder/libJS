@@ -16,7 +16,9 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
+
         root.libJS = factory();
+        root.lib = root.libJS;
     }
 }(this, function () {
 
@@ -170,6 +172,55 @@ var _lib_arrayJS = function () {
     }
 };
 
+/**
+ * assert断言库
+ * @constructor _lib_assertJS
+ */
+var _lib_assertJS = function () {
+
+    var commonJS = _lib_commonJS();
+
+    /**
+     * 自定义异常
+     * @param {string} msg
+     * @return {Error}
+     */
+    var assertError = function (msg) {
+        return new Error(msg);
+    };
+    var _assertFn = assertError;
+    return {
+
+        /**
+         * 设置断言false执行的方法
+         * @param {function} fn
+         * @memberOf _lib_assertJS
+         */
+        setAssertFn: function (fn) {
+            if(typeof fn === 'function' ) {
+                _assertFn = fn;
+            }
+        },
+        /**
+         * 自定义断言方法，根据传入的function来判断
+         * @param {function} fn
+         * @param {string} msg
+         * @memberOf _lib_assertJS
+         */
+        assert: function (fn, msg) {
+            if(fn.call()) {
+                return true;
+            }
+
+            if(commonJS.isHasClassName(_assertFn, 'Error')) {
+                throw _assertFn(msg);
+            }
+
+            _assertFn(msg);
+
+        }
+    }
+};
 /**
  * 公共类
  * @constructor _lib_commonJS
@@ -725,6 +776,15 @@ var _lib_knackJS = function () {
          */
          getHexadecimalColor: function (widthPoundKey) {
              return (widthPoundKey ? '#' : '') + Math.floor(Math.random() * (2 << 23)).toString(16);
+         },
+        /**
+         * 格式化消息
+         * @memberOf _lib_knackJS
+         * @param {string} msg  消息
+         * @returns {string}
+         */
+         log: function (msg) {
+                console.log('%c%s%s%s', 'color: yellow; background-color: black;', '– ', msg, ' –');
          }
     };
 };
@@ -833,7 +893,8 @@ var _lib_numberJS = function () {
          * @return {string}
          */
         toFiexd: function (value, n) {
-                return (value + 3e-16).toFixed(n);
+            var _v = (value + 3e-16).toFixed(n);
+            return ;
         }
     }
 
@@ -1147,7 +1208,7 @@ function _lib_stringJS() {
         stiffConcat: function () {
             var args = [];
 
-            for(var i = 0; i < arguments; i ++) {
+            for (var i = 0; i < arguments; i++) {
                 args.push(arguments[i]);
             }
 
@@ -1160,30 +1221,30 @@ function _lib_stringJS() {
          * @param object 要转换的对象
          * @returns {*}
          */
-        objoct2string: function(object) {
-        var r = [];
-        if (typeof o == "string") {
-            return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
-        }
-        if (typeof o == "object") {
-            if (!o.sort) {
-                for (var i in o) {
-                    r.push(i + ":" + obj2string(o[i]));
-                }
-                if ( !! document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
-                    r.push("toString:" + o.toString.toString());
-                }
-                r = "{" + r.join() + "}";
-            } else {
-                for (var i = 0; i < o.length; i++) {
-                    r.push(obj2string(o[i]))
-                }
-                r = "[" + r.join() + "]";
+        objoct2string: function (object) {
+            var r = [];
+            if (typeof o == "string") {
+                return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
             }
-            return r;
+            if (typeof o == "object") {
+                if (!o.sort) {
+                    for (var i in o) {
+                        r.push(i + ":" + obj2string(o[i]));
+                    }
+                    if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+                        r.push("toString:" + o.toString.toString());
+                    }
+                    r = "{" + r.join() + "}";
+                } else {
+                    for (var i = 0; i < o.length; i++) {
+                        r.push(obj2string(o[i]))
+                    }
+                    r = "[" + r.join() + "]";
+                }
+                return r;
+            }
+            return o.toString();
         }
-        return o.toString();
-    }
     }
 }
 
@@ -1264,67 +1325,72 @@ function _lib_webJS() {
          * libJS中的common公共类
          * @see {@link -lib_commonJS.html _lib_commonJS}.
          *
-         * @property common  _lib_commonJS 通过libJS.common可访问
+         * @property common  _lib_commonJS 通过libJS.common访问
          */
         common: _lib_commonJS(),
         /**
          * libJS中的Number工具类
-         * @property number _lib_numberJS 通过libJS.number可访问
+         * @property number _lib_numberJS 通过libJS.number访问
          */
         number: _lib_numberJS(),
         /**
          * libJS中的String工具类
-         * @property string _lib_stringJS 通过libJS.string可访问
+         * @property string _lib_stringJS 通过libJS.string访问
          */
         string: _lib_stringJS(),
         /**
          * libJS中的Object工具类
-         * @property object _lib_objectJS 通过libJS.object可访问
+         * @property object _lib_objectJS 通过libJS.object访问
          */
         object: _lib_objectJS(),
         /**
          * libJS中的Array工具类
-         * @property array _lib_arrayJS 通过libJS.array可访问
+         * @property array _lib_arrayJS 通过libJS.array访问
          */
         array: _lib_arrayJS(),
         /**
          * libJS中的Date工具类
-         * @property date _lib_dateJS 通过libJS.date可访问
+         * @property date _lib_dateJS 通过libJS.date访问
          */
         date: _lib_dateJS(),
         /**
          * libJS中的Web工具类
-         * @property web _lib_webJS 通过libJS.web可访问
+         * @property web _lib_webJS 通过libJS.web访问
          */
         web: _lib_webJS(),
         /**
          * libJS中的Json工具类
-         * @property json _lib_jsonJS 通过libJS.json可访问
+         * @property json _lib_jsonJS 通过libJS.json访问
          */
         json: _lib_jsonJS(),
         /**
          * libJS中的Coordinate工具类
-         * @property json _lib_coordinateJS 通过libJS.coordinate可访问
+         * @property json _lib_coordinateJS 通过libJS.coordinate访问
          */
         coordinate: _lib_coordinateJS(),
         /**
          * libJS中的Function工具类
-         * @property json _lib_functionJS 通过libJS.Function可访问
+         * @property json _lib_functionJS 通过libJS.Function访问
          */
         Function: _lib_functionJS(),
         /**
          * libJS中的ie8兼容类
-         * @property json _lib_ie8JS 通过libJS.ie8可访问
+         * @property json _lib_ie8JS 通过libJS.ie8访问
          */
         ie8: _lib_ie8JS(),
         /**
          * libJS中的knack小技巧类
-         * @property json _lib_knackJS 通过libJS.knack可访问
+         * @property knack _lib_knackJS 通过libJS.knack访问
          */
         knack: _lib_knackJS(),
         /**
+         * libJS中的assert断言库
+         * @property assert _lib_assertJS 通过libJS.assert访问
+         */
+        assert: _lib_assertJS(),
+        /**
          * libJS中的validate类
-         * @property json _lib_validateJS 通过libJS.validate可访问
+         * @property json _lib_validateJS 通过libJS.validate访问
          */
         validate: _lib_validateJS()
     };
