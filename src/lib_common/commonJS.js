@@ -26,8 +26,17 @@ function _lib_commonJS() {
         isHasClassName: function(value, name) {
             name = '[object ' + name + ']';
             return toString.call(value) === name;
+        },
+        /**
+         * 测试性能
+         * @param {String} desc 描述
+         * @param {Function} fn 测试方法
+         */
+        run: function (desc, fn) {
+            console.time(desc);
+            fn && fn();
+            console.timeEnd(desc);
         }
-
 
     };
 
